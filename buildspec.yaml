@@ -7,7 +7,7 @@ phases:
   pre_build:
     commands:
       - echo Entered the pre_build phase...
-      - eval $(aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 512803209054.dkr.ecr.us-east-2.amazonaws.com)
+      - aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 512803209054.dkr.ecr.us-east-2.amazonaws.com
       - apt-get update -y
       - apt-get install -y maven
     finally:
