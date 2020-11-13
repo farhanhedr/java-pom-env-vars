@@ -1,0 +1,30 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      java: openjdk11
+      docker: 18
+  pre_build:
+    commands:
+      - echo Entered the pre_build phase...
+      - eval $(aws ecr get-login --no-include-email --region us-east-2)
+      - apt-get update -y
+      - apt-get install -y maven
+    finally:
+      - echo This always runs even if the update or install command fails
+  build:
+    commands:
+      - echo Entered the build phase...
+      - echo Build started on `date`
+      - mvn clean package -Pqa
+      - ls -lah
+    
+    finally:
+      - echo This always runs even if the install command fails
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker tag dev-spring:latest 512803209054.dkr.ecr.us-east-2.amazonaws.com/dev-spring:latest
+      - docker push $IMAGE_REPO_NAME:$IMAGE_TAG
+
