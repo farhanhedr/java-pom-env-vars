@@ -40,8 +40,9 @@
                         </goals>
                         <configuration>
                             <tasks>
-                                <echo>Environment variables - ${env.DB_NAME}</echo>
+                                <echo>Environment variable  - ${env.DB_NAME}</echo>
                                 <echo>[project.artifactId]  - ${project.groupId}</echo>
+                                <echo>Second Env Variable   - ${env.DB_NAME2}</echo>
                             </tasks>
                         </configuration>
                     </execution>
