@@ -9,11 +9,12 @@ public class Example {
 
     @RequestMapping("/")
     String home() {
-        return "Spring Boot App Running compiled testing automated deployment";
+        return "Spring Boot App Running compiled testing locally";
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Example.class, args);
+        System.out.println("Salam from java file");
+        //SpringApplication.run(Example.class, args);
     }
 
 }
